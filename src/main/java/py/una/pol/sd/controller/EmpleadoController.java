@@ -18,11 +18,6 @@ public class EmpleadoController {
     @Autowired
     private EmpleadoService empleadoService;
 
-    @GetMapping("/saludo")
-    public String index() {
-        return "Hola mundo caluroso de Springboot - Empleados";
-    }
-
     @GetMapping(value = "/listar", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<Empleado>> getEmpleados() {
         List<Empleado> lista = empleadoService.getAllEmpleados();

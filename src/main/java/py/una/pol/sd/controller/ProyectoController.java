@@ -1,6 +1,7 @@
 package py.una.pol.sd.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import py.una.pol.sd.model.Proyecto;
 import py.una.pol.sd.repository.ProyectoRepository;
@@ -15,7 +16,7 @@ public class ProyectoController {
     private ProyectoRepository proyectoRepository;
 
     // Listar proyectos
-    @GetMapping
+    @GetMapping(value = ("/listar"), produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<Proyecto> getAllProyectos() {
         return proyectoRepository.findAll();
     }
@@ -27,7 +28,7 @@ public class ProyectoController {
     }
 
     // Crear nuevo proyecto
-    @PostMapping
+    @PostMapping(value = "/crear", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Proyecto createProyecto(@RequestBody Proyecto proyecto) {
         return proyectoRepository.save(proyecto);
     }

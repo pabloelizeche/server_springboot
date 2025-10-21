@@ -15,7 +15,7 @@ public class ClienteController {
     private ClienteRepository clienteRepository;
 
     // Obtener todos los clientes
-    @GetMapping
+    @GetMapping(value = ("/listar"), produces = {org.springframework.http.MediaType.APPLICATION_JSON_VALUE, org.springframework.http.MediaType.APPLICATION_XML_VALUE})
     public List<Cliente> getAllClientes() {
         return clienteRepository.findAll();
     }
@@ -27,7 +27,7 @@ public class ClienteController {
     }
 
     // Crear nuevo cliente
-    @PostMapping
+    @PostMapping(value = "/crear", consumes = org.springframework.http.MediaType.APPLICATION_JSON_VALUE, produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
     public Cliente createCliente(@RequestBody Cliente cliente) {
         return clienteRepository.save(cliente);
     }
